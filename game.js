@@ -35,3 +35,18 @@
         damage: 200,
         alive: true,
       };
+
+      /*const healer = document.querySelector('.img-container healer')
+      const archer = document.querySelector('.img-container archer')
+      const warrior = document.querySelector('.img-container warrior')
+      */
+
+       healer = heroesArray.map((item)=>{
+        item.name === "Henriette Healer"
+      })
+
+      healer = document.querySelector('.img-container healer').addEventListener("click", ()=>{
+        alert('healer')
+      })
+
+    console.log(healer)
