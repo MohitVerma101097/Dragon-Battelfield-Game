@@ -86,15 +86,21 @@
 
         }
     }
-
-        if(heroesArray[0].currentHP <= 0){
-          !heroesArray[0].alive;
-          heroesArray[0].remove()
-          healer.remove()
-        }
-   
-
     
+    if (heroesArray[0].currentHP <= 0) {
+      heroesArray[0].alive = false;
+  
+      heroesArray.splice(0, 1);
+ 
+      healer.remove();
+
+
+      if (heroesArray.every(hero => !hero.alive)) {
+          alert("All heroes are defeated!");
+
+      }
+  }
+  
     
     archer.addEventListener("click", ArcherAttack);
     warrior.addEventListener("click", WarriorAttack);
