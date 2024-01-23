@@ -43,24 +43,6 @@
       const warrior = document.querySelector('.img-container.warrior');
       const dragon = document.querySelector('.img-container.dragon-container');
 
-      // Array 
-/*
-      const healerHP = heroesArray[0].currentHP
-      const archerHP = heroesArray[1].currentHP
-      const warriorHP = heroesArray[2].currentHP
-      const dragonHP = dragonObject.currentHP
-
-      const healerDMG = heroesArray[0].damage
-      const archerDMG = heroesArray[0].damage
-      const warriorDMG = heroesArray[0].damage
-      const dragonDMG = dragonObject.damage
-
-*/
-
-
-
-      
-
       
       const HealerAttack = () => {
         if(dragonObject.alive && heroesArray[0].alive) {
@@ -70,8 +52,12 @@
           alert(`${heroesArray[0].name} has done ${heroesArray[0].damage} damage to ${dragonObject.name} `)
 
           console.log(dragonObject.currentHP)
-        }
 
+          dragonCounterAttack()
+
+          console.log(heroesArray[0].currentHP)
+        }
+        
 
       }
 
@@ -83,6 +69,10 @@
             alert(`${heroesArray[1].name} has done ${heroesArray[1].damage} damage to ${dragonObject.name}`);
     
             console.log(dragonObject.currentHP);
+
+            dragonCounterAttack()
+
+            console.log(heroesArray[0].currentHP)
         }
     }
     
@@ -94,6 +84,10 @@
             alert(`${heroesArray[2].name} has done ${heroesArray[2].damage} damage to ${dragonObject.name}`);
     
             console.log(dragonObject.currentHP);
+
+            dragonCounterAttack()
+
+            console.log(heroesArray[0].currentHP)
         }
     }
     
@@ -105,7 +99,8 @@
       
     
     const dragonCounterAttack = () => {
-
+        const randomAttack = Math.floor(Math.floor()*heroesArray.length)
+        return heroesArray[randomAttack].alive.currentHP - dragon.damage; 
       }
 
 
