@@ -65,30 +65,48 @@
       const HealerAttack = () => {
         if(dragonObject.alive && heroesArray[0].alive) {
 
-          dragonObject.currentHP - heroesArray[0].damage;
+          dragonObject.currentHP -= heroesArray[0].damage;
 
           alert(`${heroesArray[0].name} has done ${heroesArray[0].damage} damage to ${dragonObject.name} `)
 
-          
+          console.log(dragonObject.currentHP)
         }
 
-        console.log(dragonObject.currentHP)
-      }
-
-      healer.addEventListener("click", HealerAttack)
-
-      /*
-      const archerAttack = () => {
 
       }
 
-      const warriorAttack = () => {
+      const ArcherAttack = () => {
+        if (dragonObject.alive && heroesArray[1].alive) {
+
+            dragonObject.currentHP -= heroesArray[1].damage;
+    
+            alert(`${heroesArray[1].name} has done ${heroesArray[1].damage} damage to ${dragonObject.name}`);
+    
+            console.log(dragonObject.currentHP);
+        }
+    }
+    
+    const WarriorAttack = () => {
+        if (dragonObject.alive && heroesArray[2].alive) {
+
+            dragonObject.currentHP -= heroesArray[2].damage;
+    
+            alert(`${heroesArray[2].name} has done ${heroesArray[2].damage} damage to ${dragonObject.name}`);
+    
+            console.log(dragonObject.currentHP);
+        }
+    }
+    
+    archer.addEventListener("click", ArcherAttack);
+    warrior.addEventListener("click", WarriorAttack);
+    healer.addEventListener("click", HealerAttack)
+    
+
+      
+    
+    const dragonCounterAttack = () => {
 
       }
-
-      const dragonAttack = () => {
-
-      }*/
 
 
       
