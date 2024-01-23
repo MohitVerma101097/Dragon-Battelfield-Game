@@ -99,10 +99,14 @@
       
     
     const dragonCounterAttack = () => {
-        const randomAttack = Math.floor(Math.floor()*heroesArray.length)
-        return heroesArray[randomAttack].alive.currentHP - dragonObject.damage; 
+      const randomAttack = Math.floor(Math.random() * heroesArray.length);
+      const randomHero = heroesArray[randomAttack];
+  
+      if (randomHero.alive) {
+          randomHero.currentHP -= dragonObject.damage;
+          alert(`${dragonObject.name} has counterattacked ${randomHero.name} for ${dragonObject.damage} damage.`);
+          console.log(randomHero.currentHP);
       }
-
-
+  };
       
      
