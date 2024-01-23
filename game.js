@@ -100,7 +100,7 @@
     
     const dragonCounterAttack = () => {
         const randomAttack = Math.floor(Math.floor()*heroesArray.length)
-        return heroesArray[randomAttack].alive.currentHP - dragon.damage; 
+        return heroesArray[randomAttack].alive.currentHP - dragonObject.damage; 
       }
 
 
