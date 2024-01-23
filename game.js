@@ -54,8 +54,6 @@
           console.log(dragonObject.currentHP)
 
           dragonCounterAttack()
-
-          console.log(heroesArray[0].currentHP)
         }
         
 
@@ -72,7 +70,6 @@
 
             dragonCounterAttack()
 
-            console.log(heroesArray[0].currentHP)
         }
     }
     
@@ -87,9 +84,17 @@
 
             dragonCounterAttack()
 
-            console.log(heroesArray[0].currentHP)
         }
     }
+
+        if(heroesArray[0].currentHP <= 0){
+          !heroesArray[0].alive;
+          heroesArray[0].remove()
+          healer.remove()
+        }
+   
+
+    
     
     archer.addEventListener("click", ArcherAttack);
     warrior.addEventListener("click", WarriorAttack);
