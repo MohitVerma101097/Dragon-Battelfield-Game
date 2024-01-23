@@ -36,17 +36,43 @@
         alive: true,
       };
 
-      /*const healer = document.querySelector('.img-container healer')
-      const archer = document.querySelector('.img-container archer')
-      const warrior = document.querySelector('.img-container warrior')
-      */
+      const healer = document.querySelector('.img-container.healer');
+      const archer = document.querySelector('.img-container.archer');
+      const warrior = document.querySelector('.img-container.warrior');
+      const dragon = document.querySelector('.img-container.dragon-container');
 
-       healer = heroesArray.map((item)=>{
-        item.name === "Henriette Healer"
-      })
+      const healerHP = heroesArray[0].currentHP
+      const archerHP = heroesArray[1].currentHP
+      const warriorHP = heroesArray[2].currentHP
 
-      healer = document.querySelector('.img-container healer').addEventListener("click", ()=>{
-        alert('healer')
-      })
 
-    console.log(healer)
+
+      
+
+      
+      const HealerAttack = () => {
+        if(dragonObject.alive && heroesArray[0].alive) {
+
+          alert(`${heroesArray[0].name} has done ${heroesArray[0].damage} damage to ${dragonObject.name} `)
+
+        }
+      }
+
+      healer.addEventListener("click", HealerAttack)
+
+      /*
+      const archerAttack = () => {
+
+      }
+
+      const warriorAttack = () => {
+
+      }
+
+      const dragonAttack = () => {
+
+      }*/
+
+
+      
+     
