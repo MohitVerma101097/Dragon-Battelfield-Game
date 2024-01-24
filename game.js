@@ -91,7 +91,7 @@ const WarriorAttack = () => {
 
     dragonCounterAttack();
 
-    handleDefeatedHero(heroesArray[2], 2);
+    handleDefeatedHero(heroesArray[2]);
   }
 };
 
