@@ -32,7 +32,7 @@ let dragonObject = {
   name: "Daar Dragon",
   maxHP: 2000,
   currentHP: 2000,
-  damage: 200,
+  damage: 2000,
   alive: true,
 };
 
@@ -128,14 +128,7 @@ const dragonCounterAttack = () => {
 
 // evaluate & remove hero
 
-/*const handleDefeatedHero = (hero, index) => {
-  if (hero.currentHP <= 0) {
-    alert(`${hero.name} has been defeated!`)
-    hero.alive = false;
-    heroesArray.splice(index, 1);
-    removeDefeatedHeroFromDOM(hero);
-  }
-}; */
+
 
 const handleDefeatedHero = (hero) => {
   if (hero.currentHP <= 0) {
@@ -143,6 +136,13 @@ const handleDefeatedHero = (hero) => {
     const index = heroesArray.indexOf(hero);
     heroesArray.splice(index, 1);
     removeDefeatedHeroFromDOM(hero);
+  }
+  checkGameOver();
+};
+
+const checkGameOver = () => {
+  if (heroesArray.length === 0) {
+    alert('GG! The mighty dragon has defeated all the heroes.');
   }
 };
 
@@ -182,3 +182,13 @@ const consolelog = () => {
 }
 
 dragon.addEventListener("click", consolelog);
+
+// old function code:
+/*const handleDefeatedHero = (hero, index) => {
+  if (hero.currentHP <= 0) {
+    alert(`${hero.name} has been defeated!`)
+    hero.alive = false;
+    heroesArray.splice(index, 1);
+    removeDefeatedHeroFromDOM(hero);
+  }
+}; */
