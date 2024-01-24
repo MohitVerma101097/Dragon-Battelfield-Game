@@ -44,7 +44,6 @@ const warrior = document.querySelector(".img-container.warrior");
 const dragon = document.querySelector(".img-container.dragon-container");
 
 
-
 // start attack
 
 const HealerAttack = () => {
@@ -59,7 +58,9 @@ const HealerAttack = () => {
 
     dragonCounterAttack();
 
-    handleDefeatedHero(heroesArray[0]);
+    if (heroesArray[0].alive) {
+      handleDefeatedHero(heroesArray[0]);
+    }
   }
 };
 
@@ -75,7 +76,9 @@ const ArcherAttack = () => {
 
     dragonCounterAttack();
 
-    handleDefeatedHero(heroesArray[1]);
+    if (heroesArray[1].alive) {
+      handleDefeatedHero(heroesArray[1]);
+    }
   }
 };
 
@@ -91,7 +94,9 @@ const WarriorAttack = () => {
 
     dragonCounterAttack();
 
-    handleDefeatedHero(heroesArray[2]);
+    if (heroesArray[2].alive) {
+      handleDefeatedHero(heroesArray[2]);
+    }
   }
 };
 
@@ -138,6 +143,12 @@ const removeDefeatedHeroFromDOM = (hero) => {
     heroElement.remove();
   }
 };
+
+const domArry = [healer, archer, warrior];
+
+if (domArry.length === 0) {
+  alert('GG! The mighty dragon has defeated all the heroes.');
+}
 
 
 archer.addEventListener("click", ArcherAttack);
