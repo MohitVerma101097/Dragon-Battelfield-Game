@@ -43,6 +43,8 @@ const archer = document.querySelector(".img-container.archer");
 const warrior = document.querySelector(".img-container.warrior");
 const dragon = document.querySelector(".img-container.dragon-container");
 
+
+
 // start attack
 
 const HealerAttack = () => {
@@ -102,7 +104,8 @@ const dragonCounterAttack = () => {
     alert(
       `${dragonObject.name} has counterattacked ${randomHero.name} for ${dragonObject.damage} damage.`
     );
-    console.log(randomHero.currentHP);
+
+    console.log(randomHero.name, randomHero.currentHP)
 
     handleDefeatedHero(randomHero, heroesArray.indexOf(randomHero));
   }
@@ -121,13 +124,20 @@ const handleDefeatedHero = (hero, index) => {
 
 
 const removeDefeatedHeroFromDOM = (hero) => {
-  const heroElement = document.querySelector(`.img-container.${hero.name}`);
+  let heroElement;
+
+  if (hero.name.toLowerCase() === "henriette healer") {
+    heroElement = healer;
+  } else if (hero.name.toLowerCase() === "ariana archer") {
+    heroElement = archer;
+  } else if (hero.name.toLowerCase() === "wyona warrior") {
+    heroElement = warrior;
+  }
 
   if (heroElement) {
     heroElement.remove();
   }
 };
-
 
 
 archer.addEventListener("click", ArcherAttack);
