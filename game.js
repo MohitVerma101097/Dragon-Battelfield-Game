@@ -44,9 +44,13 @@ const warrior = document.querySelector(".img-container.warrior");
 const dragon = document.querySelector(".img-container.dragon-container");
 
 
+
+
 // start attack
 
 const HealerAttack = () => {
+  let healerHero = heroesArray.find(hero => hero.name === "Henriette Healer")  
+
   if (dragonObject.alive && heroesArray[0].alive) {
     dragonObject.currentHP -= heroesArray[0].damage;
 
@@ -54,79 +58,93 @@ const HealerAttack = () => {
       `${heroesArray[0].name} has done ${heroesArray[0].damage} damage to ${dragonObject.name} `
     );
 
-    console.log(dragonObject.currentHP);
+    console.log('Dragon HP: '+dragonObject.currentHP);
 
     dragonCounterAttack();
 
-    if (heroesArray[0].alive) {
-      handleDefeatedHero(heroesArray[0]);
-    }
+    handleDefeatedHero(healerHero)
+
+    //handleDefeatedHero(heroesArray[0]);
   }
 };
 
 const ArcherAttack = () => {
+  let archerHero = heroesArray.find(hero => hero.name === "Ariana archer")
+   
   if (dragonObject.alive && heroesArray[1].alive) {
+    
     dragonObject.currentHP -= heroesArray[1].damage;
 
     alert(
       `${heroesArray[1].name} has done ${heroesArray[1].damage} damage to ${dragonObject.name}`
     );
 
-    console.log(dragonObject.currentHP);
+    console.log('Dragon HP: '+dragonObject.currentHP);
 
     dragonCounterAttack();
 
-    if (heroesArray[1].alive) {
-      handleDefeatedHero(heroesArray[1]);
-    }
+    handleDefeatedHero(archerHero)
+
+    //handleDefeatedHero(heroesArray)
   }
 };
 
 const WarriorAttack = () => {
+  let warriorHero = heroesArray.find(hero => hero.name === "Wyona Warrior")
   if (dragonObject.alive && heroesArray[2].alive) {
+
     dragonObject.currentHP -= heroesArray[2].damage;
 
     alert(
       `${heroesArray[2].name} has done ${heroesArray[2].damage} damage to ${dragonObject.name}`
     );
 
-    console.log(dragonObject.currentHP);
+    console.log('Dragon HP: '+dragonObject.currentHP);
 
     dragonCounterAttack();
 
-    if (heroesArray[2].alive) {
-      handleDefeatedHero(heroesArray[2]);
-    }
+    handleDefeatedHero(warriorHero)
+    
+    //handleDefeatedHero(heroesArray[2]);
+
   }
 };
 
 const dragonCounterAttack = () => {
   const randomAttack = Math.floor(Math.random() * heroesArray.length);
-  const randomHero = heroesArray[randomAttack];
 
-  if (randomHero.alive) {
-    randomHero.currentHP -= dragonObject.damage;
+  if (heroesArray[randomAttack].alive) {
+    heroesArray[randomAttack].currentHP -= dragonObject.damage;
     alert(
-      `${dragonObject.name} has counterattacked ${randomHero.name} for ${dragonObject.damage} damage.`
+      `${dragonObject.name} has counterattacked ${heroesArray[randomAttack].name} for ${dragonObject.damage} damage.`
     );
 
-    console.log(randomHero.name, randomHero.currentHP)
+    console.log(heroesArray[randomAttack].name, 'HP: ' + heroesArray[randomAttack].currentHP);
 
-    handleDefeatedHero(randomHero, heroesArray.indexOf(randomHero));
+    handleDefeatedHero(heroesArray[randomAttack], randomAttack);
   }
 };
 
+
 // evaluate & remove hero
 
-const handleDefeatedHero = (hero, index) => {
+/*const handleDefeatedHero = (hero, index) => {
   if (hero.currentHP <= 0) {
     alert(`${hero.name} has been defeated!`)
     hero.alive = false;
     heroesArray.splice(index, 1);
     removeDefeatedHeroFromDOM(hero);
   }
-};
+}; */
 
+const handleDefeatedHero = (hero) => {
+  if (hero.currentHP <= 0) {
+    hero.alive = false;
+    const index = heroesArray.indexOf(hero);
+    heroesArray.splice(index, 1);
+    removeDefeatedHeroFromDOM(hero);
+  }
+};
 
 const removeDefeatedHeroFromDOM = (hero) => {
   let heroElement;
@@ -156,3 +174,11 @@ warrior.addEventListener("click", WarriorAttack);
 healer.addEventListener("click", HealerAttack);
 
 
+
+// test code
+
+const consolelog = () => {
+  console.log(heroesArray)
+}
+
+dragon.addEventListener("click", consolelog);
