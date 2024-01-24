@@ -87,6 +87,12 @@
         }
     }
     
+    heroesArray.forEach((item) => {
+      if(item[0].currentHP
+      item[1].currentHP
+      item[2].currentHP)
+    })
+
     if (heroesArray[0].currentHP <= 0) {
       heroesArray[0].alive = false;
   
