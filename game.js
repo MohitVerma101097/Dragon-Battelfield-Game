@@ -43,6 +43,8 @@ const archer = document.querySelector(".img-container.archer");
 const warrior = document.querySelector(".img-container.warrior");
 const dragon = document.querySelector(".img-container.dragon-container");
 
+// start attack
+
 const HealerAttack = () => {
   if (dragonObject.alive && heroesArray[0].alive) {
     dragonObject.currentHP -= heroesArray[0].damage;
@@ -54,6 +56,8 @@ const HealerAttack = () => {
     console.log(dragonObject.currentHP);
 
     dragonCounterAttack();
+
+    handleDefeatedHero(heroesArray[0]);
   }
 };
 
@@ -68,6 +72,8 @@ const ArcherAttack = () => {
     console.log(dragonObject.currentHP);
 
     dragonCounterAttack();
+
+    handleDefeatedHero(heroesArray[1]);
   }
 };
 
@@ -82,6 +88,8 @@ const WarriorAttack = () => {
     console.log(dragonObject.currentHP);
 
     dragonCounterAttack();
+
+    handleDefeatedHero(heroesArray[2], 2);
   }
 };
 
@@ -95,30 +103,35 @@ const dragonCounterAttack = () => {
       `${dragonObject.name} has counterattacked ${randomHero.name} for ${dragonObject.damage} damage.`
     );
     console.log(randomHero.currentHP);
+
+    handleDefeatedHero(randomHero, heroesArray.indexOf(randomHero));
   }
 };
 
-heroesArray.forEach((hero, index) => {
+// evaluate & remove hero
+
+const handleDefeatedHero = (hero, index) => {
   if (hero.currentHP <= 0) {
-    removeDefeatedHeroFromArray(hero, index);
+    alert(`${hero.name} has been defeated!`)
+    hero.alive = false;
+    heroesArray.splice(index, 1);
     removeDefeatedHeroFromDOM(hero);
   }
-});
-
-const removeDefeatedHeroFromArray = (hero, index) => {
-  hero.alive = false;
-  heroesArray.splice(index, 1);
 };
+
 
 const removeDefeatedHeroFromDOM = (hero) => {
-  const correspondingElement = document.querySelector(
-    `.img-container.${hero.name.replaceAll(" ", "").toLowerCase()}`
-  );
-  if (correspondingElement) {
-    correspondingElement.remove();
+  const heroElement = document.querySelector(`.img-container.${hero.name}`);
+
+  if (heroElement) {
+    heroElement.remove();
   }
 };
+
+
 
 archer.addEventListener("click", ArcherAttack);
 warrior.addEventListener("click", WarriorAttack);
 healer.addEventListener("click", HealerAttack);
+
+
