@@ -87,10 +87,11 @@
         }
     }
     
-    heroesArray.forEach((item) => {
-      if(item[0].currentHP
-      item[1].currentHP
-      item[2].currentHP)
+    heroesArray.forEach((hero, index) =>{
+      if (hero.currentHP <= 0){
+        hero.alive = false
+        heroesArray.splice(index, 1)
+      }
     })
 
     if (heroesArray[0].currentHP <= 0) {
