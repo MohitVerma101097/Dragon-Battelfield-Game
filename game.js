@@ -132,6 +132,7 @@ const dragonCounterAttack = () => {
 
 const handleDefeatedHero = (hero) => {
   if (hero.currentHP <= 0) {
+    alert(`${hero.name} has been defeated!`)
     hero.alive = false;
     const index = heroesArray.indexOf(hero);
     heroesArray.splice(index, 1);
