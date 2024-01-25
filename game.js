@@ -163,11 +163,6 @@ const removeDefeatedHeroFromDOM = (hero) => {
   }
 };
 
-const domArry = [healer, archer, warrior];
-
-if (domArry.length === 0) {
-  alert('GG! The mighty dragon has defeated all the heroes.');
-}
 
 
 archer.addEventListener("click", ArcherAttack);
