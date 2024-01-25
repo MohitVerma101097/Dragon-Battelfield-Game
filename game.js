@@ -51,7 +51,7 @@ const dragon = document.querySelector(".img-container.dragon-container");
 const HealerAttack = () => {
   let healerHero = heroesArray.find(hero => hero.name === "Henriette Healer")  
 
-  if (dragonObject.alive && heroesArray[0].alive) {
+  if (dragonObject.alive && healerHero.alive) {
     dragonObject.currentHP -= heroesArray[0].damage;
 
     alert(
@@ -70,8 +70,8 @@ const HealerAttack = () => {
 
 const ArcherAttack = () => {
   let archerHero = heroesArray.find(hero => hero.name === "Ariana archer")
-   
-  if (dragonObject.alive && heroesArray[1].alive) {
+   console.log(archerHero.alive)
+  if (dragonObject.alive && archerHero.alive) {
     
     dragonObject.currentHP -= heroesArray[1].damage;
 
@@ -91,7 +91,7 @@ const ArcherAttack = () => {
 
 const WarriorAttack = () => {
   let warriorHero = heroesArray.find(hero => hero.name === "Wyona Warrior")
-  if (dragonObject.alive && heroesArray[2].alive) {
+  if (dragonObject.alive && warriorHero.alive) {
 
     dragonObject.currentHP -= heroesArray[2].damage;
 
