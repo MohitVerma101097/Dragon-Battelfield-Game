@@ -49,75 +49,53 @@ const archerHealth = document.querySelector("#archer-health-txt");
 const dragonHealth = document.querySelector(".text-container.dragon-health-txt");
 
 
-
-
-
-
-
-
 // start attack
 
 const HealerAttack = () => {
-  let healerHero = heroesArray.find(hero => hero.name === "Henriette Healer")  
-
-  if (dragonObject.alive && healerHero.alive) {
+  const healerHero = heroesArray.find(hero => hero.name === "Henriette Healer");
+  
+  if (healerHero && dragonObject.alive && healerHero.alive) {
     dragonObject.currentHP -= healerHero.damage;
-
-    alert(
-      `${healerHero.name} has done ${healerHero.damage} damage to ${dragonObject.name} `
-    );
-
-    console.log('Dragon HP: '+dragonObject.currentHP);
-
+    alert(`${healerHero.name} has done ${healerHero.damage} damage to ${dragonObject.name}`);
+    console.log('Dragon HP: ' + dragonObject.currentHP);
     dragonCounterAttack();
-
-    handleDefeatedHero(healerHero)
-
-    
+    handleDefeatedHero(healerHero);
     healerHealth.innerHTML = healerHero.currentHP;
+  } else {
+    alert("No healers available for attack!");
   }
 };
 
 const ArcherAttack = () => {
-  let archerHero = heroesArray.find(hero => hero.name === "Ariana archer")
-  if (dragonObject.alive && archerHero.alive) {
-    
+  const archerHero = heroesArray.find(hero => hero.name === "Ariana archer");
+
+  if (archerHero && dragonObject.alive && archerHero.alive) {
     dragonObject.currentHP -= archerHero.damage;
-
-    alert(
-      `${archerHero.name} has done ${archerHero.damage} damage to ${dragonObject.name}`
-    );
-
-    console.log('Dragon HP: '+dragonObject.currentHP);
-
+    alert(`${archerHero.name} has done ${archerHero.damage} damage to ${dragonObject.name}`);
+    console.log('Dragon HP: ' + dragonObject.currentHP);
     dragonCounterAttack();
-
-    handleDefeatedHero(archerHero)
-
+    handleDefeatedHero(archerHero);
     archerHealth.innerHTML = archerHero.currentHP;
+  } else {
+    alert("No archers available for attack!");
   }
 };
 
 const WarriorAttack = () => {
-  let warriorHero = heroesArray.find(hero => hero.name === "Wyona Warrior")
-  if (dragonObject.alive && warriorHero.alive) {
+  const warriorHero = heroesArray.find(hero => hero.name === "Wyona Warrior");
 
+  if (warriorHero && dragonObject.alive && warriorHero.alive) {
     dragonObject.currentHP -= warriorHero.damage;
-
-    alert(
-      `${warriorHero.name} has done ${warriorHero.damage} damage to ${dragonObject.name}`
-    );
-
-    console.log('Dragon HP: '+dragonObject.currentHP);
-
+    alert(`${warriorHero.name} has done ${warriorHero.damage} damage to ${dragonObject.name}`);
+    console.log('Dragon HP: ' + dragonObject.currentHP);
     dragonCounterAttack();
-
-    handleDefeatedHero(warriorHero)
-    
-      warriorHealth.innerHTML = warriorHero.currentHP;
-
+    handleDefeatedHero(warriorHero);
+    warriorHealth.innerHTML = warriorHero.currentHP;
+  } else {
+    alert("No warriors available for attack!");
   }
 };
+
 
 const dragonCounterAttack = () => {
   const randomAttack = Math.floor(Math.random() * heroesArray.length);
