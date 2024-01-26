@@ -5,7 +5,7 @@ let heroesArray = [
     name: "Henriette Healer",
     maxHP: 400,
     currentHP: 400,
-    damage: 100,
+    damage: 10000,
     alive: true,
   },
   {
@@ -44,6 +44,10 @@ const healerHealth = document.querySelector("#healer-health-txt");
 const warriorHealth = document.querySelector("#warrior-health-txt");
 const archerHealth = document.querySelector("#archer-health-txt");
 const dragonHealth = document.querySelector(".text-container.dragon-health-txt");
+
+const healerName = document.querySelector("#healer-name-txt").innerHTML = heroesArray[0].name
+const archerName = document.querySelector("#archer-name-txt").innerHTML = heroesArray[1].name
+const warriorName = document.querySelector("#warrior-name-txt").innerHTML = heroesArray[2].name
 
 const healerValue = 400;
 const archerValue = 500;
@@ -86,7 +90,7 @@ const warriorAttack = () => {
 const dragonCounterAttack = () => {
   if (dragonObject.currentHP <= 0) {
     dragonObject.alive = false;
-    dragonHealth.textContent = `${dragonObject.currentHP} / ${dragonObject.maxHP} HP`;
+    dragonHealth.textContent = `0 / ${dragonObject.maxHP} HP` 
     dragon.remove();
     alert(`GG! The mighty dragon ${dragonObject.name} has been defeated.`);
   } else {
@@ -99,9 +103,6 @@ const dragonCounterAttack = () => {
       handleDefeatedHero(hero);
       updateHeroHealthOnScreen(hero);
       dragonHealth.textContent = `${dragonObject.currentHP} / ${dragonObject.maxHP} HP`;
-      if(dragonObject.currentHP < 0){
-        dragonHealth.textContent = `0 / ${dragonObject.maxHP} HP`
-      }
     }
   }
 };
