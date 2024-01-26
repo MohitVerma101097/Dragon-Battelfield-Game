@@ -50,7 +50,7 @@ const archerValue = 500;
 const warriorValue = 600;
 
 // start attack
-const HealerAttack = () => {
+const healerAttack = () => {
   const healerHero = heroesArray.find(hero => hero.name === "Henriette Healer");
   
   if (healerHero && dragonObject.alive) {
@@ -61,7 +61,7 @@ const HealerAttack = () => {
   }
 };
 
-const ArcherAttack = () => {
+const archerAttack = () => {
   const archerHero = heroesArray.find(hero => hero.name === "Ariana archer");
 
   if (archerHero && dragonObject.alive) {
@@ -72,7 +72,7 @@ const ArcherAttack = () => {
   }
 };
 
-const WarriorAttack = () => {
+const warriorAttack = () => {
   const warriorHero = heroesArray.find(hero => hero.name === "Wyona Warrior");
 
   if (warriorHero && dragonObject.alive) {
@@ -99,6 +99,9 @@ const dragonCounterAttack = () => {
       handleDefeatedHero(hero);
       updateHeroHealthOnScreen(hero);
       dragonHealth.textContent = `${dragonObject.currentHP} / ${dragonObject.maxHP} HP`;
+      if(dragonObject.currentHP < 0){
+        dragonHealth.textContent = `0 / ${dragonObject.maxHP} HP`
+      }
     }
   }
 };
@@ -155,13 +158,16 @@ const updateHeroHealthOnScreen = (hero) => {
 
   if (heroHealthElement) {
     heroHealthElement.textContent = `${hero.currentHP} / ${hero.maxHP} HP`;
+    if(hero.currentHP < 0){
+      heroHealthElement.textContent = `0 / ${hero.maxHP} HP`
+    }
   }
 };
 
 // Event listeners
-archer.addEventListener("click", ArcherAttack);
-warrior.addEventListener("click", WarriorAttack);
-healer.addEventListener("click", HealerAttack);
+archer.addEventListener("click", archerAttack);
+warrior.addEventListener("click", warriorAttack);
+healer.addEventListener("click", healerAttack);
 
 // Test code
 const consolelog = () => {
