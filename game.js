@@ -1,5 +1,3 @@
-//Denne JS-koden er laget klar for deg. Den trenger du ikke endre på.
-
 //Stats for heroes
 let heroesArray = [
   {
@@ -32,12 +30,11 @@ let dragonObject = {
   name: "Daar Dragon",
   maxHP: 2000,
   currentHP: 2000,
-  damage: 2000,
+  damage: 200,
   alive: true,
 };
 
 // select the DOM
-
 const healer = document.querySelector(".img-container.healer");
 const archer = document.querySelector(".img-container.archer");
 const warrior = document.querySelector(".img-container.warrior");
@@ -48,9 +45,11 @@ const warriorHealth = document.querySelector("#warrior-health-txt");
 const archerHealth = document.querySelector("#archer-health-txt");
 const dragonHealth = document.querySelector(".text-container.dragon-health-txt");
 
+const healerValue = 400;
+const archerValue = 500;
+const warriorValue = 600;
 
 // start attack
-
 const HealerAttack = () => {
   const healerHero = heroesArray.find(hero => hero.name === "Henriette Healer");
   
@@ -58,10 +57,7 @@ const HealerAttack = () => {
     dragonObject.currentHP -= healerHero.damage;
     alert(`${healerHero.name} has done ${healerHero.damage} damage to ${dragonObject.name}`);
     console.log('Dragon HP: ' + dragonObject.currentHP);
-    healerHealth.innerHTML = healerHero.currentHP;
     dragonCounterAttack();
-  } else {
-    alert("No healers available for attack!");
   }
 };
 
@@ -72,10 +68,7 @@ const ArcherAttack = () => {
     dragonObject.currentHP -= archerHero.damage;
     alert(`${archerHero.name} has done ${archerHero.damage} damage to ${dragonObject.name}`);
     console.log('Dragon HP: ' + dragonObject.currentHP);
-    archerHealth.innerHTML = archerHero.currentHP;
     dragonCounterAttack();
-  } else {
-    alert("No archers available for attack!");
   }
 };
 
@@ -86,40 +79,31 @@ const WarriorAttack = () => {
     dragonObject.currentHP -= warriorHero.damage;
     alert(`${warriorHero.name} has done ${warriorHero.damage} damage to ${dragonObject.name}`);
     console.log('Dragon HP: ' + dragonObject.currentHP);
-    warriorHealth.innerHTML = warriorHero.currentHP;
     dragonCounterAttack();
-  } else {
-    alert("No warriors available for attack!");
   }
 };
-
 
 const dragonCounterAttack = () => {
-  const randomAttack = Math.floor(Math.random() * heroesArray.length);
-
-  if (heroesArray[randomAttack]) {
-    heroesArray[randomAttack].currentHP -= dragonObject.damage;
-    alert(
-      `${dragonObject.name} has counterattacked ${heroesArray[randomAttack].name} for ${dragonObject.damage} damage.`
-    );
-
-    console.log(heroesArray[randomAttack].name, 'HP: ' + heroesArray[randomAttack].currentHP);
-
-    let hero = heroesArray[randomAttack];
-
-    console.log(hero)
-
-    handleDefeatedHero(hero);
-
-    dragonHealth.innerHTML = dragonObject.currentHP;
+  if (dragonObject.currentHP <= 0) {
+    dragonObject.alive = false;
+    dragonHealth.textContent = `${dragonObject.currentHP} / ${dragonObject.maxHP} HP`;
+    dragon.remove();
+    alert(`GG! The mighty dragon ${dragonObject.name} has been defeated.`);
+  } else {
+    const randomIndex = Math.floor(Math.random() * heroesArray.length);
+    if (heroesArray[randomIndex]) {
+      heroesArray[randomIndex].currentHP -= dragonObject.damage;
+      alert(`${dragonObject.name} has counterattacked ${heroesArray[randomIndex].name} for ${dragonObject.damage} damage.`);
+      console.log(heroesArray[randomIndex].name, 'HP: ' + heroesArray[randomIndex].currentHP);
+      let hero = heroesArray[randomIndex];
+      handleDefeatedHero(hero);
+      updateHeroHealthOnScreen(hero);
+      dragonHealth.textContent = `${dragonObject.currentHP} / ${dragonObject.maxHP} HP`;
+    }
   }
 };
 
-
 // evaluate & remove hero
-
-
-
 const handleDefeatedHero = (hero) => {
   if (hero.currentHP <= 0) {
     alert(`${hero.name} has been defeated!`)
@@ -139,32 +123,48 @@ const checkGameOver = () => {
 
 const removeDefeatedHeroFromDOM = (hero) => {
   let heroElement;
+  let heroHealthValue;
 
   if (hero.name.toLowerCase() === "henriette healer") {
     heroElement = healer;
+    heroHealthValue = healerValue;
   } else if (hero.name.toLowerCase() === "ariana archer") {
     heroElement = archer;
+    heroHealthValue = archerValue;
   } else if (hero.name.toLowerCase() === "wyona warrior") {
     heroElement = warrior;
-  }
+    heroHealthValue = warriorValue;
+  } 
 
   if (heroElement) {
     heroElement.remove();
+    heroHealthValue.textContent = `0 / ${heroHealthValue} HP`;
   }
 };
 
+const updateHeroHealthOnScreen = (hero) => {
+  let heroHealthElement;
 
+  if (hero.name.toLowerCase() === "henriette healer") {
+    heroHealthElement = healerHealth;
+  } else if (hero.name.toLowerCase() === "ariana archer") {
+    heroHealthElement = archerHealth;
+  } else if (hero.name.toLowerCase() === "wyona warrior") {
+    heroHealthElement = warriorHealth;
+  } 
 
+  if (heroHealthElement) {
+    heroHealthElement.textContent = `${hero.currentHP} / ${hero.maxHP} HP`;
+  }
+};
+
+// Event listeners
 archer.addEventListener("click", ArcherAttack);
 warrior.addEventListener("click", WarriorAttack);
 healer.addEventListener("click", HealerAttack);
 
-
-
-// test code
-
+// Test code
 const consolelog = () => {
-  console.log(heroesArray)
-}
-
+  console.log(heroesArray);
+};
 dragon.addEventListener("click", consolelog);
