@@ -5,7 +5,7 @@ let heroesArray = [
     name: "Henriette Healer",
     maxHP: 400,
     currentHP: 400,
-    damage: 10000,
+    damage: 100,
     alive: true,
   },
   {
@@ -26,6 +26,7 @@ let heroesArray = [
   },
 ];
 
+// Dragon object
 let dragonObject = {
   name: "Daar Dragon",
   maxHP: 2000,
@@ -34,7 +35,7 @@ let dragonObject = {
   alive: true,
 };
 
-// select the DOM
+// Selecting DOM elements
 const healer = document.querySelector(".img-container.healer");
 const archer = document.querySelector(".img-container.archer");
 const warrior = document.querySelector(".img-container.warrior");
@@ -45,15 +46,18 @@ const warriorHealth = document.querySelector("#warrior-health-txt");
 const archerHealth = document.querySelector("#archer-health-txt");
 const dragonHealth = document.querySelector(".text-container.dragon-health-txt");
 
+// Assigning names to DOM elements
 const healerName = document.querySelector("#healer-name-txt").innerHTML = heroesArray[0].name
 const archerName = document.querySelector("#archer-name-txt").innerHTML = heroesArray[1].name
 const warriorName = document.querySelector("#warrior-name-txt").innerHTML = heroesArray[2].name
+const dragonName = document.querySelector("#dragon-name-txt").innerHTML = dragonObject.name
 
+// Constants for hero health values
 const healerValue = 400;
 const archerValue = 500;
 const warriorValue = 600;
 
-// start attack
+// Hero attacks
 const healerAttack = () => {
   const healerHero = heroesArray.find(hero => hero.name === "Henriette Healer");
   
@@ -87,6 +91,7 @@ const warriorAttack = () => {
   }
 };
 
+// Dragon counterattack
 const dragonCounterAttack = () => {
   if (dragonObject.currentHP <= 0) {
     dragonObject.alive = false;
@@ -107,7 +112,7 @@ const dragonCounterAttack = () => {
   }
 };
 
-// evaluate & remove hero
+// Handle defeated hero
 const handleDefeatedHero = (hero) => {
   if (hero.currentHP <= 0) {
     alert(`${hero.name} has been defeated!`)
@@ -119,12 +124,14 @@ const handleDefeatedHero = (hero) => {
   checkGameOver();
 };
 
+// Check if the game is over
 const checkGameOver = () => {
   if (heroesArray.length === 0) {
     alert('GG! The mighty dragon has defeated all the heroes.');
   }
 };
 
+// Remove defeated hero from the DOM
 const removeDefeatedHeroFromDOM = (hero) => {
   let heroElement;
   let heroHealthValue;
@@ -146,6 +153,7 @@ const removeDefeatedHeroFromDOM = (hero) => {
   }
 };
 
+// Update hero health on the screen
 const updateHeroHealthOnScreen = (hero) => {
   let heroHealthElement;
 
@@ -165,12 +173,12 @@ const updateHeroHealthOnScreen = (hero) => {
   }
 };
 
-// Event listeners
+// Event listeners for hero attacks
 archer.addEventListener("click", archerAttack);
 warrior.addEventListener("click", warriorAttack);
 healer.addEventListener("click", healerAttack);
 
-// Test code
+// Test code for logging heroes array
 const consolelog = () => {
   console.log(heroesArray);
 };
